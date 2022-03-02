@@ -79,13 +79,13 @@ class UsersController extends Controller
         foreach ($files as $fileName => $structure) {
             $$fileName = collect(json_decode(file_get_contents('./' . $fileName . '.json'), true));
             foreach ($$fileName as $row) {
-                array_push($data, [
+                $data[] = [
                     'email' => $row[$structure['email']],
                     'currency' => $row[$structure['currency']],
                     'status' => $structure['statusCodes'][$row[$structure['status']]],
                     'balance' => $row[$structure['balance']],
                     'fileName' => $fileName,
-                ]);
+                ];
             }
         }
         return $data;
