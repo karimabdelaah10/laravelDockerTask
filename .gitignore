@@ -1,0 +1,40 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Laravel template
+src/vendor/*
+
+
+
+# Laravel 5 & Lumen specific
+src/public/storage
+src/public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+src/public_html/storage
+src/public_html/hot
+
+src/.env
+src/Homestead.yaml
+src/Homestead.json
+/.vagrant
+.phpunit.result.cache
+
+### VisualStudioCode template
+src/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+src/storage/db-data/
+# Local History for Visual Studio Code
+.history/
+docker-data
+.idea
+.docker-data
+src/composer.lock
+/.docker-data/
+node_modules
+/mysql/*
+/.idea/*
+.idea
+mysql
