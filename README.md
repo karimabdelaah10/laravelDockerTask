@@ -19,3 +19,11 @@ inside project directory
 [//]: # (## To Run The Unit Tests)
 
 [//]: # (- run `./vendor/bin/phpunit ./tests/Feature/ExampleTest.php`)
+
+### To Add New Provider 
+1- add provider json file to /public ( make sure that file has the same structure of providers files )
+2- add the new file structure to FILES_STRUCTURE array in src/app/Http/Enums/MainEnums.php:13 (with the same structure)
+### Use this curl to test the api
+
+curl --location --request GET 'http://localhost:8088/api/v1/users?currency=ASD&balanceMin=200&balanceMax=250&statusCode=authorised&provider=dataProviderX' \
+--header 'Accept: application/json'
