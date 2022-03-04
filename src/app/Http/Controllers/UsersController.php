@@ -61,21 +61,30 @@ class UsersController extends Controller
     {
         return $data->when(isset(\request()->currency), function ($q) {
             return $q->where('currency', request()->currency);
-        })->when(isset(\request()->balanceMin), function ($q) {
-            return $q->where('balance', '>=', request()->balanceMin);
-        })->when(isset(\request()->balanceMax), function ($q) {
-            return $q->where('balance', '<=', request()->balanceMax);
-        })->when(isset(\request()->provider), function ($q) {
-            return $q->where('fileName', request()->provider);
-        })->when(isset(\request()->statusCode), function ($q) {
-            return $q->where('status', request()->statusCode);
-        });
+        })
+            ->when(isset(\request()->balanceMin), function ($q) {
+                return $q->where('balance', '>=', request()->balanceMin);
+            })
+            ->when(isset(\request()->balanceMax), function ($q) {
+                return $q->where('balance', '<=', request()->balanceMax);
+            })
+            ->when(isset(\request()->provider), function ($q) {
+                return $q->where('fileName', request()->provider);
+            })
+            ->when(isset(\request()->statusCode), function ($q) {
+                return $q->where('status', request()->statusCode);
+            });
     }
 
     public function loadData(): array
     {
         $data = [];
         $files = MainEnums::FILES_STRUCTURE;
+        if (isset(\request()->provider)) {
+            $files = [
+                \request()->provider => $files[\request()->provider]
+            ];
+        }
         foreach ($files as $fileName => $structure) {
             $$fileName = collect(json_decode(file_get_contents('./' . $fileName . '.json'), true));
             foreach ($$fileName as $row) {
